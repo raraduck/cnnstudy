@@ -6,9 +6,14 @@ __pycache__
 */data/FashionMNIST
 */data/MNIST
 */data/openml
+*/_data/FashionMNIST
+*/_data/MNIST
+*/_data/openml
 */fig/*.png
 */fig/*.jpg
 */results/*.pt
 */results/*.png
 *.png
 *.pt
+*.npz
+*.npy
