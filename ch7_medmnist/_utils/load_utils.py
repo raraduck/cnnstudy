@@ -30,10 +30,10 @@ def display_from_batch(sample_batch, nrows=1, ncols=1, CLASSES=None, ):
             i = ncols * r + c
             (imgs, cls) = sample_batch
             axes_1d[i].imshow(imgs[i,:].permute(1,2,0), cmap='gray')
-            if CLASSES==None:
-                axes_1d[i].set_title(cls[i].tolist())
-            else:
-                axes_1d[i].set_title(CLASSES[cls[i].item()])
+            # if CLASSES==None:
+            #     axes_1d[i].set_title(cls[i].tolist())
+            # else:
+            #     axes_1d[i].set_title(CLASSES[cls[i].item()])
     plt.tight_layout()
 
 
