@@ -6,11 +6,16 @@ from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 
 
-def load_fashionmnist(batch_size=256):
-    fmnist_train = FashionMNIST("./_data", train=True, download=True,
-                               transform=transforms.ToTensor())
+def load_fashionmnist(batch_size=256, trformers=None):
+    if trformers==None:
+        fmnist_train = FashionMNIST("./_data", train=True, download=True,
+                                   transform=transforms.Compose([transforms.ToTensor()]))
+    else:
+        fmnist_train = FashionMNIST("./_data", train=True, download=True,
+                                   transform=trformers) 
     fmnist_test = FashionMNIST("./_data", train=False, download=True,
-                               transform=transforms.ToTensor())   
+                               transform=transforms.Compose([transforms.ToTensor()]))   
+        
     classnames = {
         0:'T-shirt/top',
         1:'Trouser',
