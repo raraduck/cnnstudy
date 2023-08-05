@@ -75,6 +75,7 @@ def mlc_training_loop(n_epochs, optimizer, model, loss_fn, train_loader, test_lo
     print('train_losses: ', train_losses)
     print('train_acc: ', train_acc)
     print('val_acc: ', val_acc)
+    return train_losses, train_acc, val_acc
 
 
 def mlc_training_loop_l2reg(n_epochs, optimizer, model, loss_fn, train_loader, test_loader, device='cpu'):
@@ -118,6 +119,7 @@ def mlc_training_loop_l2reg(n_epochs, optimizer, model, loss_fn, train_loader, t
     print('train_losses: ', train_losses)
     print('train_acc: ', train_acc)
     print('val_acc: ', val_acc)
+    return train_losses, train_acc, val_acc
 
 
 
