@@ -3,14 +3,8 @@
 .ipynb_checkpoints
 venv
 __pycache__
-*/data/FashionMNIST
-*/data/MNIST
-*/data/openml
-*/data/celeba
-*/_data/FashionMNIST
-*/_data/MNIST
-*/_data/openml
-*/_data/celeba
+*/data/*
+*/_data/*
 */fig/*.png
 */fig/*.jpg
 */results/*.pt
