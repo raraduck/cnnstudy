@@ -1,7 +1,7 @@
 
 # ch7_medmnist/loader/data_loader.py
 
-from torchvision.datasets import MNIST, FashionMNIST
+from torchvision.datasets import MNIST, FashionMNIST, CIFAR10
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 

@@ -349,10 +349,10 @@ class AlexNet(nn.Module):
         self.pool5 = nn.MaxPool2d(2)
         h = h // 2
         w = w // 2
-        self.dropout6 = nn.Dropout2d(p=0.5)
+        self.dropout6 = nn.Dropout(p=0.5)
         self.fc6 = nn.Linear(c * h * w, 1024)
         self.act6 = nn.ReLU()
-        self.dropout7 = nn.Dropout2d(p=0.5)
+        self.dropout7 = nn.Dropout(p=0.5)
         self.fc7 = nn.Linear(1024, 512)
         self.act7 = nn.ReLU()
         self.fc8 = nn.Linear(512, num_classes)
