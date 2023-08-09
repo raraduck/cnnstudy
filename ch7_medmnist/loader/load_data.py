@@ -1,4 +1,3 @@
-
 # ch7_medmnist/loader/data_loader.py
 
 from torchvision.datasets import MNIST, FashionMNIST, CIFAR10, CIFAR100
