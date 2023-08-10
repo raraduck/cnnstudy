@@ -2,10 +2,9 @@ import torch
 from torch import nn, optim
 
 class VGG(nn.Module):
-    def __init__(self, cfg, batch_norm, num_classes = 1000, init_weights = True, drop_p = 0.5):
+    def __init__(self, cfg, batch_norm, num_classes = 1000, init_weights = True, drop_p = 0.5, C=1):
         super().__init__()
-
-        self.features = self.make_layers(cfg, batch_norm)
+        self.features = self.make_layers(C, cfg, batch_norm)
         self.avgpool = nn.AdaptiveAvgPool2d((7, 7)) # 7x7 이 되도록 avg pooling 하는 녀석
         self.classifier = nn.Sequential(nn.Linear(512 * 7 * 7, 4096),
                                         nn.ReLU(),
@@ -32,9 +31,9 @@ class VGG(nn.Module):
         x = self.classifier(x)
         return x
 
-    def make_layers(self, cfg, batch_norm = False):
+    def make_layers(self, C, cfg, batch_norm = False):
         layers = []
-        in_channels = 1
+        in_channels = C
         for v in cfg:
             if type(v) == int:
                 if batch_norm:
