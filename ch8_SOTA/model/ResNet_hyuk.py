@@ -69,7 +69,8 @@ class ResNet(nn.Module):
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True) # 좀더 메모리 효율적
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-        self.layer1 = self.make_layers(block, 64, num_block_list[0], stride=1)
+        self.layer1 = self.
+        (block, 64, num_block_list[0], stride=1)
         self.layer2 = self.make_layers(block, 128, num_block_list[1], stride=2)
         self.layer3 = self.make_layers(block, 256, num_block_list[2], stride=2)
         self.layer4 = self.make_layers(block, 512, num_block_list[3], stride=2)
