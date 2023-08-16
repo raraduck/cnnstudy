@@ -45,6 +45,7 @@ def evaluate_3min(model, test_loader, loss_fn, device):
 
 def mclass_training_loop_3min(n_epochs, model, loss_fn, optimizer, scheduler, train_loader, test_loader, saver, device='cpu'):
     train_losses = []
+    test_losses = []
     for epoch in range(1, n_epochs + 1):
         scheduler.step()
         train_loss = training_3min(model, train_loader, loss_fn, optimizer, epoch, device)
