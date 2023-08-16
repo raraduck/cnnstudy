@@ -54,6 +54,8 @@ def mclass_training_loop_3min(n_epochs, model, loss_fn, optimizer, scheduler, tr
         if epoch > 10:
             saver.save_at_best_test_loss(epoch, test_loss)
         
+    return train_losses, test_losses
+        
         
         
         
