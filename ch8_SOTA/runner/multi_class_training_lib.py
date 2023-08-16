@@ -52,7 +52,7 @@ def mclass_training_loop_3min(n_epochs, model, loss_fn, optimizer, scheduler, tr
         train_losses.append(train_loss)
         test_loss, test_accuracy = evaluate_3min(model, test_loader, loss_fn, device)
         test_losses.append(test_loss)
-        print(f'[{epoch}] Test Loss: {test_loss:.2f}, Accuracy: {test_accuracy:.2f}%')
+        print(f'[{epoch}] Test Loss: {test_loss:.4f}, Accuracy: {test_accuracy:.4f}%')
         if epoch > 10:
             saver.save_at_best_test_loss(epoch, test_loss)
         
@@ -110,7 +110,7 @@ def mclass_training_loop_basic(n_epochs, model, loss_fn, optimizer, scheduler, t
         train_losses.append(train_loss)
         test_loss, test_accuracy = evaluate_basic(model, test_loader, loss_fn, device)
         test_losses.append(test_loss)
-        print(f'[{epoch}] Test Loss: {test_loss:.2f}, Accuracy: {test_accuracy:.2f}%')
+        print(f'[{epoch}] Test Loss: {test_loss:.4f}, Accuracy: {test_accuracy:.4f}%')
         if epoch > 10:
             saver.save_at_best_test_loss(epoch, test_loss)
         
