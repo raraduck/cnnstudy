@@ -50,7 +50,7 @@ def mclass_training_loop_3min(n_epochs, model, loss_fn, optimizer, scheduler, tr
         train_loss = training_3min(model, train_loader, loss_fn, optimizer, epoch, device)
         train_losses.append(train_loss)
         test_loss, test_accuracy = evaluate_3min(model, test_loader, loss_fn, device)
-        print(f'[{epoch}] Test Loss: {test_loss}, Accuracy: {test_accuracy}%')
+        print(f'[{epoch}] Test Loss: {test_loss:.2f}, Accuracy: {test_accuracy:.2f}%')
         if epoch > 10:
             saver.save_at_best_test_loss(epoch, test_loss)
         
@@ -99,11 +99,15 @@ def evaluate_basic(model, test_loader, loss_fn, device):
     
 def mclass_training_loop_basic(n_epochs, model, loss_fn, optimizer, scheduler, train_loader, test_loader, saver, device='cpu'):
     train_losses = []
+    test_losses = []
     for epoch in range(1, n_epochs + 1):
         scheduler.step()
         train_loss = training_basic(model, train_loader, loss_fn, optimizer, epoch, device)
         train_losses.append(train_loss)
         test_loss, test_accuracy = evaluate_basic(model, test_loader, loss_fn, device)
-        print(f'[{epoch}] Test Loss: {test_loss}, Accuracy: {test_accuracy}%')
+        test_losses.append(test_loss)
+        print(f'[{epoch}] Test Loss: {test_loss:.2f}, Accuracy: {test_accuracy:.2f}%')
         if epoch > 10:
             saver.save_at_best_test_loss(epoch, test_loss)
+        
+    return train_losses, test_losses
