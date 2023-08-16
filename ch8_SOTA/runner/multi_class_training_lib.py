@@ -3,6 +3,24 @@ from torch import nn, optim
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
+
+def validate_accuracy(model, train_loader, test_loader, device='cpu'):
+    accdict = {}
+    for name, loader in [("train", train_loader), ("val", test_loader)]:
+        correct = 0
+        with torch.no_grad():
+            for imgs, labels in loader:
+                imgs = imgs.to(device=device)
+                labels = labels.to(device=device)
+                outputs = model(imgs)
+                _, predicted = torch.max(outputs, dim=1) # <1>
+                correct += int((predicted == labels).sum())
+
+        accuracy = correct / len(loader.dataset)
+        accdict[name] = accuracy
+    return accdict
+
+
 def training_3min(model, train_loader, loss_fn, optimizer, epoch, device):
     model.train()
     running_loss = 0.0
@@ -53,7 +71,7 @@ def mclass_training_loop_3min(n_epochs, model, loss_fn, optimizer, scheduler, tr
         test_loss, test_accuracy = evaluate_3min(model, test_loader, loss_fn, device)
         test_losses.append(test_loss)
         print(f'[{epoch}] Test Loss: {test_loss:.4f}, Accuracy: {test_accuracy:.4f}%')
-        if epoch > 10:
+        if epoch > 5:
             saver.save_at_best_test_loss(epoch, test_loss)
         
     return train_losses, test_losses
@@ -111,7 +129,7 @@ def mclass_training_loop_basic(n_epochs, model, loss_fn, optimizer, scheduler, t
         test_loss, test_accuracy = evaluate_basic(model, test_loader, loss_fn, device)
         test_losses.append(test_loss)
         print(f'[{epoch}] Test Loss: {test_loss:.4f}, Accuracy: {test_accuracy:.4f}%')
-        if epoch > 10:
+        if epoch > 5:
             saver.save_at_best_test_loss(epoch, test_loss)
         
     return train_losses, test_losses
